@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-         attr_accessible :primer_nombre, :primer_apellido, :nickname, :password,
+         attr_accessible :primer_nombre, :primer_apellido, :nickname, :password, :password_confirmation,
          				:email, :encrypted_password
+
+        has_many :statuses
+
+        def nombre_completo
+        	primer_nombre + " " + primer_apellido
+        end
 end
