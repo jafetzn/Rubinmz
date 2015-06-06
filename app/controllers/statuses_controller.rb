@@ -1,10 +1,11 @@
 class StatusesController < ApplicationController
+  #El filtro filter es para que no se pueda dar de alta estatus si no estas registrado
+  before_filter :authenticate_user!, only: [:new]
   before_action :set_status, only: [:show, :edit, :update, :destroy]
-
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.all
+    @statuses = Status.order("created_at desc")
 
     respond_to do |format|
       format.html # index.html.erb
